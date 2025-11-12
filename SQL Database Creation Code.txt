@@ -1,0 +1,81 @@
+-- Create Database
+CREATE DATABASE IF NOT EXISTS barangay_profiling;
+USE barangay_profiling;
+
+-- Table: Barangay
+CREATE TABLE Barangay (
+    barangay_id INT AUTO_INCREMENT PRIMARY KEY,
+    barangay_name VARCHAR(100) NOT NULL,
+    city VARCHAR(100),
+    province VARCHAR(100),
+    region VARCHAR(100)
+);
+
+-- Table: Family
+CREATE TABLE Family (
+    family_id INT AUTO_INCREMENT PRIMARY KEY,
+    household_number VARCHAR(50),
+    address VARCHAR(100),
+    family_head_id INT,
+    barangay_id INT,
+    family_name VARCHAR(50),
+    FOREIGN KEY (barangay_id) REFERENCES Barangay(barangay_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table: Person
+CREATE TABLE Person (
+    person_id INT AUTO_INCREMENT PRIMARY KEY,
+    family_id INT,
+    first_name VARCHAR(50),
+    middle_name VARCHAR(50),
+    last_name VARCHAR(50),
+    gender VARCHAR(10),
+    date_of_birth DATE,
+    relationship_to_head VARCHAR(50),
+    occupation VARCHAR(50),
+    educational_attainment VARCHAR(50),
+    contact_number VARCHAR(15),
+    civil_status VARCHAR(50),
+    religion VARCHAR(50),
+    FOREIGN KEY (family_id) REFERENCES Family(family_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table: Barangay_Official
+CREATE TABLE Barangay_Official (
+    official_id INT AUTO_INCREMENT PRIMARY KEY,
+    barangay_id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    position VARCHAR(50),
+    term_start DATE,
+    term_end DATE,
+    FOREIGN KEY (barangay_id) REFERENCES Barangay(barangay_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table: Barangay_Clearance
+CREATE TABLE Barangay_Clearance (
+    clearance_id INT AUTO_INCREMENT PRIMARY KEY,
+    person_id INT,
+    clearance_type VARCHAR(50),
+    issue_date DATE,
+    validity_date DATE,
+    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Optional: Add sample data for testing
+INSERT INTO Barangay (barangay_name, city, province, region)
+VALUES ('Barangay 1', 'Cityville', 'Sample Province', 'Region VIII');
+
+INSERT INTO Family (household_number, address, barangay_id, family_name)
+VALUES ('HH-001', 'Purok 1', 1, 'Dela Cruz');
+
+INSERT INTO Person (family_id, first_name, middle_name, last_name, gender, date_of_birth, relationship_to_head, occupation, educational_attainment, contact_number, civil_status, religion)
+VALUES (1, 'Juan', 'Santos', 'Dela Cruz', 'Male', '1990-05-14', 'Head', 'Farmer', 'College', '09171234567', 'Married', 'Catholic');
