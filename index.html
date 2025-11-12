@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Barangay Profiling — Residents & Families</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <div class="brand">Barangay Profiling</div>
+    <div class="muted">FriendFinder-style • Responsive</div>
+  </div>
+
+  <div class="container">
+    <div class="tabs card">
+      <button class="tab active" data-view="residents">Residents</button>
+      <button class="tab" data-view="families">Families</button>
+    </div>
+
+    <div class="card controls-wrap">
+      <div class="controls">
+        <input id="searchBox" placeholder="Search residents or families…">
+        <div class="spacer"></div>
+        <div class="actions-row">
+          <button id="addResidentBtn">+ Add Resident</button>
+          <button id="addFamilyBtn" class="ghost">+ Add Family</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="view-residents" class="card view active">
+      <h2>Residents</h2>
+      <div class="table-wrap">
+        <table id="residentTable">
+          <thead>
+            <tr>
+              <th>#</th><th>Name</th><th>Family</th><th>Gender</th><th>DOB</th><th>Age</th><th>Rel. to Head</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="view-families" class="card view">
+      <h2>Families</h2>
+      <div class="table-wrap">
+        <table id="familyTable">
+          <thead>
+            <tr>
+              <th>#</th><th>Family Name</th><th>Head of Family</th><th>Address</th><th>Members</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="residentModal">
+    <div class="dialog">
+      <h3 id="residentModalTitle">Add Resident</h3>
+      <form id="residentForm" onsubmit="return false;">
+        <input type="hidden" name="person_id" id="person_id">
+        <input type="hidden" name="action" id="residentAction" value="createResident">
+
+        <div class="grid">
+          <div><label>First Name</label><input name="first_name" id="first_name" required></div>
+          <div><label>Middle Name</label><input name="middle_name" id="middle_name"></div>
+          <div><label>Last Name</label><input name="last_name" id="last_name" required></div>
+          <div><label>Gender</label>
+            <select name="gender" id="gender">
+              <option>Male</option><option>Female</option><option>Other</option>
+            </select>
+          </div>
+          <div><label>Date of Birth</label><input type="date" name="date_of_birth" id="date_of_birth" required></div>
+          <div>
+            <label>Relationship to Head</label>
+            <select name="relationship_to_head" id="relationship_to_head">
+              <option value="Head">Head of Family</option>
+              <option value="Spouse">Spouse</option>
+              <option value="Child">Child</option>
+              <option value="Parent">Parent</option>
+              <option value="Sibling">Sibling</option>
+              <option value="Relative">Relative</option>
+              <option value="Helper">Helper</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div><label>Occupation</label><input name="occupation" id="occupation"></div>
+          <div><label>Educational Attainment</label><input name="educational_attainment" id="educational_attainment"></div>
+          <div><label>Contact Number</label><input name="contact_number" id="contact_number"></div>
+          <div><label>Civil Status</label><input name="civil_status" id="civil_status"></div>
+          <div><label>Religion</label><input name="religion" id="religion"></div>
+        </div>
+
+        <div class="card inner">
+          <label>Does the resident belong to an existing family?</label>
+          <select id="belongs" name="belongs">
+            <option value="yes">Yes</option>
+            <option value="no">No (create new family and set as Head)</option>
+          </select>
+
+          <div id="existingFamilyArea">
+            <label>Choose Family</label>
+            <select name="existing_family_id" id="existing_family_id"></select>
+          </div>
+
+          <div id="newFamilyArea" style="display:none">
+            <div class="grid">
+              <div><label>New Family Name</label><input name="new_family_name" id="new_family_name" placeholder="e.g., Dela Cruz Family"></div>
+              <div><label>Household #</label><input name="new_household_number" id="new_household_number"></div>
+              <div><label>Address</label><input name="new_address" id="new_address"></div>
+              <div><label>Barangay ID</label><input name="new_barangay_id" id="new_barangay_id" type="number" value="1"></div>
+            </div>
+            <p class="muted">When creating a new family, this resident is saved as <b>Head</b>.</p>
+          </div>
+        </div>
+
+        <div class="controls end">
+          <button type="button" class="ghost" onclick="closeResidentModal()">Cancel</button>
+          <button id="saveResidentBtn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="familyModal">
+    <div class="dialog">
+      <h3 id="familyModalTitle">Add Family</h3>
+      <form id="familyForm" onsubmit="return false;">
+        <input type="hidden" name="family_id" id="family_id">
+        <div class="grid">
+          <div><label>Family Name</label><input name="family_name" id="family_name" required></div>
+          <div><label>Household #</label><input name="household_number" id="household_number"></div>
+          <div><label>Address</label><input name="address" id="address"></div>
+        </div>
+        <div class="controls end">
+          <button type="button" class="ghost" onclick="closeFamilyModal()">Cancel</button>
+          <button id="saveFamilyBtn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>Barangay Profiling • Flowchart-compliant • 3NF-friendly</footer>
+  <script src="script.js"></script>
+</body>
+</html>
