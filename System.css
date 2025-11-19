@@ -1,0 +1,258 @@
+/* -------------------------------------------------------
+   GLOBAL BACKGROUND — Dark Gradient + Neon Lighting
+------------------------------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+
+    background: radial-gradient(
+        circle at top left,
+        #3a0070 0%,
+        #0b1020 40%,
+        #020617 75%,
+        #000000 100%
+    );
+    background-attachment: fixed;
+
+    color: #f4f4f9;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+}
+
+
+/* -------------------------------------------------------
+   SIDEBAR — Neon Glass Style
+------------------------------------------------------- */
+.sidebar {
+    height: 100vh;
+
+    background: rgba(10, 15, 30, 0.55); /* dark glass */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    border-right: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        8px 0 25px rgba(0,0,0,0.65),
+        0 0 40px rgba(119,0,255,0.25);
+
+    padding: 25px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 80px;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+.sidebar:hover {
+    width: 240px;
+}
+
+/* Sidebar text */
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    margin-bottom: 35px;
+
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.sidebar:hover .logo {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Sidebar menu */
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 16px 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 12px 14px;
+
+    background: rgba(255,255,255,0.05);
+    color: #d8d8e8;
+
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    
+    white-space: nowrap;
+    overflow: hidden;
+
+    opacity: 0;
+    transition: opacity 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+
+    text-decoration: none !important;   /* ← REMOVE UNDERLINE */
+}
+
+
+.sidebar:hover ul li a {
+    opacity: 1;
+}
+
+/* Hover / Active */
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(146, 58, 255, 0.4),
+        0 0 20px rgba(0,153,255,0.25);
+
+    text-decoration: none !important;   /* ← PREVENT UNDERLINE ON HOVER */
+}
+
+
+/* -------------------------------------------------------
+   MAIN CONTENT — Centered Glass Layout
+------------------------------------------------------- */
+.main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+
+    padding: 50px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar:hover ~ .main-content {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+}
+
+
+/* -------------------------------------------------------
+   CONTENT PANEL — Hero-Section Style Glass Block
+------------------------------------------------------- */
+.glass-panel {
+    background: rgba(17, 24, 39, 0.45); /* deep dark glass */
+    border-radius: 24px;
+    padding: 40px;
+
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 0 40px rgba(119,0,255,0.25),
+        0 0 80px rgba(0,106,255,0.15),
+        0 0 20px rgba(0,0,0,0.35);
+
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* -------------------------------------------------------
+   TYPOGRAPHY — Pure white + bold hero style
+------------------------------------------------------- */
+.heading {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #ffffff;
+
+    margin-bottom: 16px;
+}
+
+.section-title {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #d0d0e6;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #e6e6f3;
+}
+
+
+/* -------------------------------------------------------
+   FEATURE LIST
+------------------------------------------------------- */
+.feature-list {
+    margin-left: 20px;
+    line-height: 1.7;
+    font-size: 17px;
+    color: #d8d8e8;
+}
+
+
+/* -------------------------------------------------------
+   INFO CARDS — Glow Glass Cards
+------------------------------------------------------- */
+.card-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.info-card {
+    width: 260px;
+    padding: 22px;
+
+    background: rgba(255,255,255,0.07);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+
+    transition: 0.25s ease;
+}
+
+.info-card h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 0 20px rgba(146, 58, 255, 0.35),
+        0 0 40px rgba(0,153,255,0.25);
+}
+
+
+/* -------------------------------------------------------
+   FOOTER
+------------------------------------------------------- */
+.footer-note {
+    margin-top: 40px;
+    text-align: center;
+    opacity: 0.85;
+    color: #cfcfe8;
+    font-size: 15px;
+}
