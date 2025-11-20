@@ -1,1 +1,325 @@
 @import url("System.css");
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+}
+
+
+.summary-panel,
+.filters-panel {
+    min-height: 260px;
+    height: auto;
+}
+
+/* ----------------------------------------
+   SUMMARY GRID (IDENTICAL TO EDUCATION)
+-----------------------------------------*/
+.summary-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.summary-card {
+    background: rgba(15,23,42,0.85);
+
+    border-radius: 18px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.summary-label {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.summary-sub {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ----------------------------------------
+   FILTER PANEL — EXACT MATCH WITH EDUCATION
+-----------------------------------------*/
+.filters-panel {
+    padding: 28px 32px;
+    max-width: 1100px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* education.css */
+@import url("System.css");
+
+/* Make this page column-oriented like Persons */
+.main-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+}
+
+/* Top summary panel */
+.summary-panel {
+    max-width: 1100px;
+    width: 100%;
+}
+
+/* Filters panel */
+.filters-panel {
+    max-width: 1100px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+/* Summary cards row */
+.summary-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+}
+
+.summary-card {
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 16px;
+    padding: 16px 18px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: 0 0 16px rgba(15, 23, 42, 0.9);
+}
+
+.summary-label {
+    font-size: 13px;
+    color: #a5b4fc;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.summary-value {
+    margin-top: 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f9fafb;
+}
+
+/* Filters layout */
+.filters-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px 20px;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-label {
+    font-size: 13px;
+    color: #cbd5f5;
+}
+
+.filter-input {
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: rgba(15,23,42,0.85);
+    color: #f9fafb;
+    outline: none;
+    font-size: 14px;
+}
+
+.filter-input::placeholder {
+    color: rgba(148, 163, 184, 0.8);
+}
+
+.filter-input:focus {
+    border-color: rgba(129, 140, 248, 0.95);
+    box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.85);
+}
+
+
+/* Filter buttons row */
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border-radius: 999px;
+    padding: 9px 20px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ec4899, #6366f1);
+    color: #ffffff;
+    box-shadow:
+        0 0 18px rgba(236, 72, 153, 0.4),
+        0 0 30px rgba(99, 102, 241, 0.35);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #e5e7eb;
+    border-color: rgba(148, 163, 184, 0.8);
+}
+
+.btn-secondary:hover {
+    background: rgba(15,23,42,0.8);
+}
+
+/* Charts area */
+.analytics-grid {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* On small screens stack charts */
+@media (max-width: 1100px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-panel {
+    /* glass-panel base already from System.css */
+    max-width: 100%;
+    padding: 28px;
+}
+
+.chart-panel canvas {
+    margin-top: 12px;
+}
+
+/* Keep section titles consistent */
+.section-title {
+    margin: 0 0 6px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+
+/* Filter input groups */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Fix filter buttons alignment */
+.filter-actions {
+    grid-column: span 4;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;   /* <-- MATCH EDUCATION */
+    margin-top: 6px;
+}
+
+
+
+
+/* MATCHING BUTTONS */
+.btn-primary {
+    background: linear-gradient(90deg,
+        #ff00aa 0%,
+        #9b4dff 45%,
+        #00b8ff 100%);
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ----------------------------------------
+   CHART GRID — SAME AS EDUCATION (3 panels)
+-----------------------------------------*/
+.analytics-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.chart-panel {
+    padding: 22px 24px;
+    border-radius: 20px;
+    min-height: 340px;
+}
+
+.chart-panel canvas {
+    margin-top: 12px;
+    width: 100% !important;
+    height: 280px !important;
+}
+
+/* ----------------------------------------
+   RESPONSIVE BEHAVIOR (COPY OF EDUCATION)
+-----------------------------------------*/
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-actions {
+        grid-column: span 2;
+    }
+
+    .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-actions {
+        grid-column: span 1;
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
